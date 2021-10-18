@@ -115,6 +115,7 @@ Livré sur le dépot Github (Pusher vos code Dimanche 24/10 à minuit au plus ta
 N'hesitez pas utiliser la doc officiel de Angular
 Ainsi que toute les ressource donnés pendant le module.
 - [Docs officiel JAVA] - Get Started
+- [Docs SpringBoot in Visual Studio Code] - Get Started
 
 > Note: N'oubliez pas de pusher votre code dans vos branches respectives `!!! Attention à ne surtout pas Pusher dans la develop et encore moins dans la branche main !!!`.
 
@@ -124,3 +125,4 @@ MIT
 
    [git-repo-url]: <https://github.com/yabarji59/Brief_JAVA_BACKEND-Grp1.git>
    [Docs officiel JAVA]: <https://docs.oracle.com/en/java/>
+   [Docs SpringBoot in Visual Studio Code]: <https://code.visualstudio.com/docs/java/java-spring-boot>
