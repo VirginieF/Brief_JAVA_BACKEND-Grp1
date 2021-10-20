@@ -1,17 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Post } from '../model/post.model';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { Post } from "../model/post.model";
 
-const baseUrl = 'http://localhost:8080/api/posts';
+const baseUrl = "http://localhost:8080/api/posts";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class PostService {
-
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   list(): Observable<any> {
     return this.http.get(baseUrl);

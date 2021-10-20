@@ -1,13 +1,13 @@
 package gespost.presentation.pojo;
 
-public class postDto {
+public class PostDto {
 
     private String title;
     private String content;
     private String tags;
     private Boolean published;
 
-    public postDto() {
+    public PostDto() {
     }
 
     public String getTitle() {
