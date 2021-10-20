@@ -7,6 +7,5 @@ import gespost.persistance.beanDo.PostDo;
 
 @Repository
 public interface IPostDao extends JpaRepository<PostDo, String> {
-
     
 }
