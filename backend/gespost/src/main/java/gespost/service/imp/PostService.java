@@ -88,10 +88,12 @@ public class PostService implements IPostService {
 
     @Override
     public PostDto findPostById(String id) {
-    // public Optional<PostDo> findById(String id) {
-    //     return postDao.findById(id);
-    // }
-        return postDao.findById(id).get();
+        PostDo postDo = new PostDo();
+        postDo = postDao.findById(id).get();
+        if (postDo == null) {
+            return null;
+        }
+        return mapToPostDto(postDo);
     }
 
     @Override
