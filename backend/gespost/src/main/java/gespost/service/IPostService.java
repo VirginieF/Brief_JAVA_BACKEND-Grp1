@@ -1,7 +1,9 @@
 package gespost.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import gespost.persistance.beanDo.PostDo;
 import gespost.presentation.pojo.PostDto;
 
 public interface IPostService {
@@ -27,7 +29,7 @@ public interface IPostService {
      * @param id
      * @return post
      */
-    PostDto findPostById(String id);
+    Optional<PostDto> findPostById(String id);
 
     /**
      * Permet de creer un nouveau Post

@@ -10,6 +10,9 @@ public class PostDto {
     public PostDto() {
     }
 
+    public PostDto(String id, String title2, String content2, boolean published2, String tags2) {
+    }
+
     public String getTitle() {
         return this.title;
     }
