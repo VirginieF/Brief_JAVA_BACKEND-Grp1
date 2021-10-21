@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -46,7 +47,17 @@ public class PostController {
     
     @PostMapping({"/posts"})
     public String save(@RequestBody PostDto post){
-    return postService.createPost(post);
+        return this.postService.createPost(post);
 
     }
+
+    @DeleteMapping({"/posts/{id}"})
+    public void delete(@PathVariable(value = "id") String id){
+        this.postService.deletePost(id);
+
+    }
+    
+
 }
+
+

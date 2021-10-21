@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostService implements IPostService {
    
     @Autowired
-    IPostDao postDao;
+    private IPostDao postDao;
 
     /**
      * map un postDo ---> postDto
@@ -34,6 +34,7 @@ public class PostService implements IPostService {
         if (postDo == null) {
             return null;
         }
+        postDto.setId(postDo.getId());
         postDto.setTitle(postDo.getTitle());
         postDto.setContent(postDo.getContent());
         postDto.setPublished(postDo.getPublished());
@@ -111,7 +112,7 @@ public class PostService implements IPostService {
 
     @Override
     public void deletePost(String id) {
-        // TODO Auto-generated method stub
+      this.postDao.deleteById(id); 
 
     }
 
