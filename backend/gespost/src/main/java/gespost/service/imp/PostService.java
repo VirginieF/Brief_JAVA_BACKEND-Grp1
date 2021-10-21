@@ -1,6 +1,8 @@
-package gespost.service.imp;
+
+ackage gespost.service.imp;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +17,11 @@ import gespost.service.IPostService;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public class PostService implements IPostService {
-
+   
     @Autowired
     IPostDao postDao;
 
@@ -93,17 +96,28 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public String createPost(PostDto postDto) {
-        // TODO Auto-generated method stub
-        return null;
+    public String createPost(final PostDto postDto) {
+        
+        PostDo postDo = new PostDo();
+        postDo = mapToPostDo(postDto);
+
+        final PostDo newPostDo =  postDao.save(postDo);
+        return newPostDo.getId();
     }
 
     @Override
     public void updatePost(String id, PostDto postDto) {
         // TODO Auto-generated method stub
-
-    }
-
+        Optional<PostDto> post = findPostById(id);
+        if (post.isPresent()) {
+            PostDto forUpdate = post.get();
+            forUpdate.setContent(postDo.getContent());
+            forUpdate.setTitle(postDo.getTitle());
+            forUpdate.setTags(postDo.getTags());
+            return new postDo;
+        }
+        }
+        
     @Override
     public void deletePost(String id) {
         // TODO Auto-generated method stub
@@ -111,3 +125,10 @@ public class PostService implements IPostService {
     }
 
 }
+
+
+
+
+
+
+

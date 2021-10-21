@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-GespostApplication<gespost>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "gespost.GespostApplication",
+            "projectName": "gespost",
+            "args": ""
+        }
+    ]
+}
