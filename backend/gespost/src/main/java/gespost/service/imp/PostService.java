@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import gespost.persistance.beanDo.PostDo;
 import gespost.persistance.dao.IPostDao;
-import gespost.presentation.pojo.PostRequest;
 import gespost.presentation.pojo.PostDto;
 
 import gespost.service.IPostService;
@@ -16,22 +15,11 @@ import gespost.service.IPostService;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public class PostService implements IPostService {
-    @Autowired
-    private IPostDao repoPostDao;
-    public void createPost(PostRequest post){
-        PostDo postDo = new PostDo();
-        postDo.setTitle(post.getTitle());
-        postDo.setContent(post.getContent());
-        postDo.setTags(post.getTags());
-        postDo.setPublished(post.getPublished());
-        this.repoPostDao.save(postDo);
-
-    }
-    
-
+   
     @Autowired
     IPostDao postDao;
 
@@ -106,9 +94,13 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public String createPost(PostDto postDto) {
-        // TODO Auto-generated method stub
-        return null;
+    public String createPost(final PostDto postDto) {
+        
+        PostDo postDo = new PostDo();
+        postDo = mapToPostDo(postDto);
+
+        final PostDo newPostDo =  postDao.save(postDo);
+        return newPostDo.getId();
     }
 
     @Override

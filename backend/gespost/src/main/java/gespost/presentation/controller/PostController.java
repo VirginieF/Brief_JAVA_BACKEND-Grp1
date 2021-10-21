@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import gespost.service.IPostService;
 import gespost.presentation.pojo.PostDto;
@@ -41,4 +43,10 @@ public class PostController {
         return liste;
     }
 
+    
+    @PostMapping({"/posts"})
+    public String save(@RequestBody PostDto post){
+    return postService.createPost(post);
+
+    }
 }
