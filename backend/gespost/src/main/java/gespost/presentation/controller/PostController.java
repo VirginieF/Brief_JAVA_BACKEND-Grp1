@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,7 +32,7 @@ public class PostController {
     }
 
     /**
-     * Permet de retouner la liste de tous les posts
+     * Permet de retourner la liste de tous les posts
      * 
      * Postman link : GET api/posts
      * 
@@ -48,11 +47,10 @@ public class PostController {
     }
 
     @GetMapping({ "/posts/{id}" })
-    public ResponseEntity<PostDto> getById(@PathVariable String id) {
-        Optional<PostDto> post = postService.findPostById(id);
-        return post.map(ResponseEntity::ok)
-        .orElseGet(() -> ResponseEntity.notFound()
-                                       .build());
+    public PostDto getById(@PathVariable String id) {
+       PostDto postDto = postService.findPostById(id);
+        
+        return postDto;
     }
 
     @GetMapping({ "/posts?title={title}" })

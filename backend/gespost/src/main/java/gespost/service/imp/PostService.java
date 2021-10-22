@@ -54,6 +54,7 @@ public class PostService implements IPostService {
         if (postDto == null) {
             return null;
         }
+        postDo.setId(postDto.getId());
         postDo.setTitle(postDto.getTitle());
         postDo.setContent(postDto.getContent());
         postDo.setPublished(postDto.getPublished());
@@ -93,10 +94,9 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public Optional<PostDto> findPostById(String id) {
-        Optional<PostDo> opPostDo = postDao.findById(id);
-              return opPostDo.map(opPostDto -> new PostDto(
-                  opPostDto.getId(),opPostDto.getTitle(),opPostDto.getContent(),opPostDto.getPublished(), opPostDto.getTags()));
+    public PostDto findPostById(String id) {
+        PostDo postDo = postDao.findById(id).get();
+              return mapToPostDto(postDo);
     }
 
     @Override

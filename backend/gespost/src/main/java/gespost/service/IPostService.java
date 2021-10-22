@@ -28,7 +28,7 @@ public interface IPostService {
      * @param id
      * @return post
      */
-    Optional<PostDto> findPostById(String id);
+    PostDto findPostById(String id);
 
     /**
      * Permet de creer un nouveau Post
