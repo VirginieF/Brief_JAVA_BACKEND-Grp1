@@ -1,12 +1,9 @@
 package gespost.presentation.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import gespost.service.IPostService;
@@ -48,11 +46,10 @@ public class PostController {
     }
 
     @GetMapping({ "/posts/{id}" })
-    public ResponseEntity<PostDto> getById(@PathVariable String id) {
-        Optional<PostDto> post = postService.findPostById(id);
-        return post.map(ResponseEntity::ok)
-        .orElseGet(() -> ResponseEntity.notFound()
-                                       .build());
+    public PostDto getById(@PathVariable String id) {
+        
+        return postService.findPostById(id);
+       
     }
 
     @GetMapping({ "/posts?title={title}" })
@@ -61,8 +58,6 @@ public class PostController {
         return liste;
     }
    
-
-    
     @PostMapping({"/posts"})
     public String save(@RequestBody PostDto post){
         return this.postService.createPost(post);
@@ -72,9 +67,17 @@ public class PostController {
     @DeleteMapping({"/posts/{id}"})
     public void delete(@PathVariable(value = "id") String id){
         this.postService.deletePost(id);
-
     }
     
+    @PutMapping("/posts/{id}")
+    public void update(@PathVariable String id, @RequestBody PostDto postDto) {
+        PostDto post = postService.findPostById(id);
+        if (post != null) {
+            postService.updatePost(id, postDto);
+        } else {
+            postService.createPost(postDto);
+        }
+    }
 
 }
 

@@ -1,7 +1,6 @@
 package gespost.service.imp;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,10 +92,9 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public Optional<PostDto> findPostById(String id) {
-        Optional<PostDo> opPostDo = postDao.findById(id);
-              return opPostDo.map(opPostDto -> new PostDto(
-                  opPostDto.getId(),opPostDto.getTitle(),opPostDto.getContent(),opPostDto.getPublished(), opPostDto.getTags()));
+    public PostDto findPostById(String id) {
+        PostDo postDo = postDao.findById(id).get();
+              return mapToPostDto(postDo);
     }
 
     @Override
@@ -110,15 +108,18 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public void updatePost(String id, PostDto postDto) {
-        // TODO Auto-generated method stub
-
+    public void updatePost(final String id,final PostDto postDto) {
+           PostDo postDo = postDao.findById(id).get();
+            postDo.setTitle(postDto.getTitle());
+            postDo.setContent(postDto.getContent());
+            postDo.setTags(postDto.getTags());
+            postDo.setPublished(postDto.getPublished());
+            postDao.save(postDo);
     }
 
     @Override
     public void deletePost(String id) {
       this.postDao.deleteById(id); 
-
     }
 
 }
