@@ -1,5 +1,4 @@
-
-Package gespost.service.imp;
+package gespost.service.imp;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import gespost.persistance.beanDo.PostDo;
 import gespost.persistance.dao.IPostDao;
-import gespost.presentation.pojo.PostDto;
 
+import gespost.presentation.pojo.PostDto;
 import gespost.service.IPostService;
 
 import org.springframework.transaction.annotation.Propagation;
@@ -23,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostService implements IPostService {
    
     @Autowired
-    IPostDao postDao;
+    private IPostDao postDao;
 
     /**
      * map un postDo ---> postDto
@@ -36,6 +35,7 @@ public class PostService implements IPostService {
         if (postDo == null) {
             return null;
         }
+        postDto.setId(postDo.getId());
         postDto.setTitle(postDo.getTitle());
         postDto.setContent(postDo.getContent());
         postDto.setPublished(postDo.getPublished());
@@ -76,6 +76,8 @@ public class PostService implements IPostService {
         return listDesChatsDto;
     }
 
+    
+
     @Override
     public List<PostDto> getAllPost() {
         List<PostDto> allPosts = new ArrayList<PostDto>();
@@ -85,14 +87,16 @@ public class PostService implements IPostService {
 
     @Override
     public List<PostDto> findAllPostByTitle(String title) {
-        // TODO Auto-generated method stub
-        return null;
+        List<PostDto> allPosts = new ArrayList<PostDto>();
+        allPosts = mapToListDesPostsDto(postDao.findAllByTitleContaining(title));
+        return allPosts;
     }
 
     @Override
-    public PostDto findPostById(String id) {
-        // TODO Auto-generated method stub
-        return null;
+    public Optional<PostDto> findPostById(String id) {
+        Optional<PostDo> opPostDo = postDao.findById(id);
+              return opPostDo.map(opPostDto -> new PostDto(
+                  opPostDto.getId(),opPostDto.getTitle(),opPostDto.getContent(),opPostDto.getPublished(), opPostDto.getTags()));
     }
 
     @Override
@@ -107,22 +111,18 @@ public class PostService implements IPostService {
 
     @Override
     public void updatePost(final String id,final PostDto postDto) {
-        /** 
-        Optional<PostDto> post = findPostById(id);
-        if (post.isPresent()) {
-            PostDto forUpdate = post.getById();
-            forUpdate.setContent(postDo.getContent());
-            forUpdate.setTitle(postDo.getTitle());
-            forUpdate.setTags(postDo.getTags());
-            return new postDoId();
-
-        }
-        **/
-        }
+           PostDo postDo = postDao.findById(id).get();
+            postDo.setTitle(postDto.getTitle());
+            postDo.setContent(postDto.getContent());
+            postDo.setTags(postDto.getTags());
+            postDo.setPublished(postDto.getPublished());
+            postDao.save(postDo);
+    
+    }
         
     @Override
     public void deletePost(String id) {
-        // TODO Auto-generated method stub
+      this.postDao.deleteById(id); 
 
     }
 

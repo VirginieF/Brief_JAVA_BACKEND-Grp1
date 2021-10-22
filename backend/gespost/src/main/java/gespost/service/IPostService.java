@@ -1,6 +1,7 @@
 package gespost.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import gespost.presentation.pojo.PostDto;
 
@@ -22,12 +23,12 @@ public interface IPostService {
     List<PostDto> findAllPostByTitle(String title);
 
     /**
-     * Permet de chercher un post à ârtir de son id
+     * Permet de chercher un post à partir de son id
      * 
      * @param id
      * @return post
      */
-    PostDto findPostById(String id);
+    Optional<PostDto> findPostById(String id);
 
     /**
      * Permet de creer un nouveau Post

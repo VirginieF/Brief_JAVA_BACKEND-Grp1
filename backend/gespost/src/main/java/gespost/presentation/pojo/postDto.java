@@ -1,22 +1,29 @@
 package gespost.presentation.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class PostDto {
-    
+    @JsonIgnore
     private String id;
     private String title;
     private String content;
     private String tags;
     private Boolean published;
 
+    public PostDto(String id2, String title2, String content2, boolean published2, String tags2) {
+    }
     public PostDto() {
     }
-    public String getId(){
+   
+    public String getId() {
         return this.id;
     }
-    
-    public void setId(String id){
-        this.id= id;
+
+    public void setId(String id) {
+        this.id = id;
     }
+
+
     public String getTitle() {
         return this.title;
     }
@@ -58,5 +65,4 @@ public class PostDto {
         return "{" + "'" + ", title='" + getTitle() + "'" + ", content='" + getContent() + "'" + ", tags='" + getTags()
                 + "'" + ", published='" + isPublished() + "'" + "}";
     }
-
 }

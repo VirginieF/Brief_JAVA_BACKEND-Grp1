@@ -1,12 +1,21 @@
 package gespost.presentation.controller;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import gespost.service.IPostService;
 import gespost.presentation.pojo.PostDto;
@@ -31,13 +40,50 @@ public class PostController {
      * @return liste
      */
     @GetMapping({ "/posts" })
-    public List<PostDto> list() {
-
-        List<PostDto> liste = postService.getAllPost();
-        return liste;
+    public List<PostDto> list(@RequestParam(required = false) String title) {
+        if (StringUtils.isEmpty(title)) {
+            return postService.getAllPost();
+        }
+        return postService.findAllPostByTitle(title);
     }
 
-}
+    @GetMapping({ "/posts/{id}" })
+    public ResponseEntity<PostDto> getById(@PathVariable String id) {
+        Optional<PostDto> post = postService.findPostById(id);
+        return post.map(ResponseEntity::ok)
+        .orElseGet(() -> ResponseEntity.notFound()
+                                       .build());
+    }
+
+    @GetMapping({ "/posts?title={title}" })
+    public List<PostDto> getByTitle(String title) {
+        List<PostDto> liste = postService.findAllPostByTitle(title);
+        return liste;
+    }
+   
 
     
+    @PostMapping({"/posts"})
+    public String save(@RequestBody PostDto post){
+        return this.postService.createPost(post);
 
+    }
+
+    @DeleteMapping({"/posts/{id}"})
+    public void delete(@PathVariable(value = "id") String id){
+        this.postService.deletePost(id);
+
+    }
+
+    @PutMapping("/posts/{id}")
+    public void update(@PathVariable String id, @RequestBody PostDto postDto) {
+        Optional<PostDto> post = postService.findPostById(id);
+        if (post.isPresent()) {
+            postService.updatePost(id, postDto);
+        } else {
+            postService.createPost(postDto);
+        }
+    }
+    
+
+}
