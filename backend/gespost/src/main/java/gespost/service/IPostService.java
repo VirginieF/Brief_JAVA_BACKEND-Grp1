@@ -1,7 +1,6 @@
 package gespost.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import gespost.presentation.pojo.PostDto;
 
@@ -43,8 +42,9 @@ public interface IPostService {
      * 
      * @param id
      * @param postDto
+     * @return 
      */
-    void updatePost(String id, PostDto postDto);
+    String updatePost(String id, PostDto postDto);
 
     /**
      * Permet de supprimer un post

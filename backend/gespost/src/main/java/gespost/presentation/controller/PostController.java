@@ -1,11 +1,9 @@
 package gespost.presentation.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,64 +23,60 @@ import gespost.presentation.pojo.PostDto;
 @RequestMapping("/api")
 public class PostController {
 
-    @Autowired
-    private IPostService postService;
+	@Autowired
+	private IPostService postService;
 
-    public PostController(IPostService postService) {
-        this.postService = postService;
-    }
+	public PostController(IPostService postService) {
+		this.postService = postService;
+	}
 
-    /**
-     * Permet de retourner la liste de tous les posts
-     * 
-     * Postman link : GET api/posts
-     * 
-     * @return liste
-     */
-    @GetMapping({ "/posts" })
-    public List<PostDto> list(@RequestParam(required = false) String title) {
-        if (StringUtils.isEmpty(title)) {
-            return postService.getAllPost();
-        }
-        return postService.findAllPostByTitle(title);
-    }
+	/**
+	 * Permet de retourner la liste de tous les posts
+	 * 
+	 * Postman link : GET api/posts
+	 * 
+	 * @return liste
+	 */
+	@GetMapping({ "/posts" })
+	public List<PostDto> list(@RequestParam(required = false) String title) {
+		if (StringUtils.isEmpty(title)) {
+			return postService.getAllPost();
+		}
+		return postService.findAllPostByTitle(title);
+	}
 
-    @GetMapping({ "/posts/{id}" })
-    public PostDto getById(@PathVariable String id) {
-       PostDto postDto = postService.findPostById(id);
-        
-        return postDto;
-    }
+	@GetMapping({ "/posts/{id}" })
+	public PostDto getById(@PathVariable String id) {
+		PostDto postDto = postService.findPostById(id);
+		return postDto;
+	}
 
-    @GetMapping({ "/posts?title={title}" })
-    public List<PostDto> getByTitle(String title) {
-        List<PostDto> liste = postService.findAllPostByTitle(title);
-        return liste;
-    }
-   
+	@GetMapping({ "/posts?title={title}" })
+	public List<PostDto> getByTitle(String title) {
+		List<PostDto> liste = postService.findAllPostByTitle(title);
+		return liste;
+	}
 
-    
-    @PostMapping({"/posts"})
-    public String save(@RequestBody PostDto post){
-        return this.postService.createPost(post);
+	@PostMapping({ "/posts" })
+	public String save(@RequestBody PostDto post) {
+		return this.postService.createPost(post);
 
-    }
+	}
 
-    @DeleteMapping({"/posts/{id}"})
-    public void delete(@PathVariable(value = "id") String id){
-        this.postService.deletePost(id);
+	@DeleteMapping({ "/posts/{id}" })
+	public void delete(@PathVariable(value = "id") String id) {
+		this.postService.deletePost(id);
 
-    }
+	}
 
-    @PutMapping("/posts/{id}")
-    public void update(@PathVariable String id, @RequestBody PostDto postDto) {
-        Optional<PostDto> post = postService.findPostById(id);
-        if (post.isPresent()) {
-            postService.updatePost(id, postDto);
-        } else {
-            postService.createPost(postDto);
-        }
-    }
-    
+	@PutMapping("/posts/{id}")
+	public String update(@PathVariable String id, @RequestBody PostDto postDto) {
+		PostDto currentPostDto = postService.findPostById(id);
+		if (currentPostDto != null) {
+			return postService.updatePost(id, postDto);
+		} else {
+			return  postService.createPost(postDto);
+		}
+	}
 
 }

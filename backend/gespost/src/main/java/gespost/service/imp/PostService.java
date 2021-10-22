@@ -1,7 +1,6 @@
 package gespost.service.imp;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,13 +109,14 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public void updatePost(final String id,final PostDto postDto) {
+    public String updatePost(final String id,final PostDto postDto) {
            PostDo postDo = postDao.findById(id).get();
             postDo.setTitle(postDto.getTitle());
             postDo.setContent(postDto.getContent());
             postDo.setTags(postDto.getTags());
             postDo.setPublished(postDto.getPublished());
-            postDao.save(postDo);
+           final PostDo updatedPost =  postDao.save(postDo);
+           return mapToPostDto(updatedPost).getId();
     
     }
         
