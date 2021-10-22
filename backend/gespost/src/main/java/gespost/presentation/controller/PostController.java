@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import gespost.service.IPostService;
@@ -72,8 +73,16 @@ public class PostController {
         this.postService.deletePost(id);
 
     }
+
+    @PutMapping("/posts/{id}")
+    public void update(@PathVariable String id, @RequestBody PostDto postDto) {
+        Optional<PostDto> post = postService.findPostById(id);
+        if (post.isPresent()) {
+            postService.updatePost(id, postDto);
+        } else {
+            postService.createPost(postDto);
+        }
+    }
     
 
 }
-
-

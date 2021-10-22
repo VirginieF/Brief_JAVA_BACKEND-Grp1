@@ -110,11 +110,16 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public void updatePost(String id, PostDto postDto) {
-        // TODO Auto-generated method stub
-
+    public void updatePost(final String id,final PostDto postDto) {
+           PostDo postDo = postDao.findById(id).get();
+            postDo.setTitle(postDto.getTitle());
+            postDo.setContent(postDto.getContent());
+            postDo.setTags(postDto.getTags());
+            postDo.setPublished(postDto.getPublished());
+            postDao.save(postDo);
+    
     }
-
+        
     @Override
     public void deletePost(String id) {
       this.postDao.deleteById(id); 
@@ -122,3 +127,10 @@ public class PostService implements IPostService {
     }
 
 }
+
+
+
+
+
+
+

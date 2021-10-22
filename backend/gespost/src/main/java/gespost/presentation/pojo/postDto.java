@@ -10,7 +10,11 @@ public class PostDto {
     private String tags;
     private Boolean published;
 
-
+    public PostDto(String id2, String title2, String content2, boolean published2, String tags2) {
+    }
+    public PostDto() {
+    }
+   
     public String getId() {
         return this.id;
     }
@@ -19,11 +23,6 @@ public class PostDto {
         this.id = id;
     }
 
-    public PostDto() {
-    }
-
-    public PostDto(String id, String title2, String content2, boolean published2, String tags2) {
-    }
 
     public String getTitle() {
         return this.title;

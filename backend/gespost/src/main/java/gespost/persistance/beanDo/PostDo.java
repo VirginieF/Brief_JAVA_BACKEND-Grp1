@@ -11,17 +11,16 @@ import javax.persistence.Id;
 public class PostDo {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @GeneratedValue(generator = "id")
+    @GenericGenerator(name = "id", strategy = "id2")
     private String id;
-
+    private String content;
+    private boolean published;
+    private String tags;
     private String title;
 
-    private String content;
 
-    private boolean published;
 
-    private String tags;
 
     public PostDo() {
     }
