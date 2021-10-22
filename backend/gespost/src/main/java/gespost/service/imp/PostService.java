@@ -1,5 +1,5 @@
 
-ackage gespost.service.imp;
+Package gespost.service.imp;
 
 import java.util.List;
 import java.util.Optional;
@@ -106,16 +106,18 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public void updatePost(String id, PostDto postDto) {
-        // TODO Auto-generated method stub
+    public void updatePost(final String id,final PostDto postDto) {
+        /** 
         Optional<PostDto> post = findPostById(id);
         if (post.isPresent()) {
-            PostDto forUpdate = post.get();
+            PostDto forUpdate = post.getById();
             forUpdate.setContent(postDo.getContent());
             forUpdate.setTitle(postDo.getTitle());
             forUpdate.setTags(postDo.getTags());
-            return new postDo;
+            return new postDoId();
+
         }
+        **/
         }
         
     @Override

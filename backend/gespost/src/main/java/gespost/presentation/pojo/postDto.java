@@ -1,7 +1,8 @@
 package gespost.presentation.pojo;
 
 public class PostDto {
-
+    
+    private String id;
     private String title;
     private String content;
     private String tags;
@@ -9,7 +10,13 @@ public class PostDto {
 
     public PostDto() {
     }
-
+    public String getId(){
+        return this.id;
+    }
+    
+    public void setId(String id){
+        this.id= id;
+    }
     public String getTitle() {
         return this.title;
     }
