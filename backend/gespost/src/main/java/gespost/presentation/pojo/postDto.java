@@ -7,10 +7,8 @@ public class PostDto {
     private String tags;
     private Boolean published;
 
-
     public PostDto() {
     }
-    
 
     public String getTitle() {
         return this.title;
