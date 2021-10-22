@@ -12,7 +12,7 @@ public class PostDo {
 
     @Id
     @GeneratedValue(generator = "id")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @GenericGenerator(name = "id", strategy = "uuid2")
     private String id;
     private String content;
     private boolean published;
