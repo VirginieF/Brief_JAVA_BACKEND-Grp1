@@ -45,12 +45,24 @@ public class PostController {
 		return postService.findAllPostByTitle(title);
 	}
 
+	/**
+	 * Permet de retrouver un post par son id
+	 * 
+	 * @param id
+	 * @return post
+	 */
 	@GetMapping({ "/posts/{id}" })
 	public PostDto getById(@PathVariable String id) {
 		PostDto postDto = postService.findPostById(id);
 		return postDto;
 	}
 
+	/**
+	 * Permet de retourner tous les posts qui ont le même titre
+	 * 
+	 * @param title
+	 * @return liste
+	 */
 	@GetMapping({ "/posts?title={title}" })
 	public List<PostDto> getByTitle(String title) {
 		List<PostDto> liste = postService.findAllPostByTitle(title);
