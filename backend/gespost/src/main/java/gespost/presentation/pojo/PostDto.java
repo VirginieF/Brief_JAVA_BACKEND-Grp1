@@ -1,9 +1,7 @@
 package gespost.presentation.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class PostDto {
-    @JsonIgnore
+
     private String id;
     private String title;
     private String content;
