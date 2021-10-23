@@ -40,7 +40,7 @@ public class PostService implements IPostService {
 	}
 
 	/**
-	 * map un postDto ---> postDoq
+	 * map un postDto ---> postDo
 	 * 
 	 * @param postDto
 	 * @return postDo
