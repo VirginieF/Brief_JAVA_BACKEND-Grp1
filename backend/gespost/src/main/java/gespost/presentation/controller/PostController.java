@@ -69,11 +69,19 @@ public class PostController {
 		return liste;
 	}
 
+    /**
+     * Permet de creer un nouveau Post
+     */
+
 	@PostMapping({ "/posts" })
 	public void save(@RequestBody PostDto post) {
 		this.postService.createPost(post);
 
 	}
+
+    /**
+     * Permet de supprimer un Post
+     */
 
 	@DeleteMapping({ "/posts/{id}" })
 	public void delete(@PathVariable(value = "id") String id) {
@@ -89,6 +97,10 @@ public class PostController {
 		} else {
 			postService.createPost(postDto);
 		}
+
+        /**
+     * Permet de publier un publication
+     */
 	}
     @PutMapping("/posts/{id}/publish")
 	public void publish(@PathVariable String id, @RequestBody PostDto postDto) {
