@@ -78,11 +78,12 @@ public class PostController {
 			postService.createPost(postDto);
 		}
 	}
-    @PutMapping("/posts/{id}/publish")
+
+	@PutMapping("/posts/{id}/publish")
 	public void publish(@PathVariable String id, @RequestBody PostDto postDto) {
 		PostDto currentPostDto = postService.findPostById(id);
-        currentPostDto.setPublished(postDto.getPublished());
-        postService.updatePost(id, postDto);
+		currentPostDto.setPublished(postDto.getPublished());
+		postService.updatePost(id, postDto);
 	}
 
 }

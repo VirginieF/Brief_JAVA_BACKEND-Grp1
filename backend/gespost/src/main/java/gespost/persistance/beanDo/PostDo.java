@@ -10,69 +10,66 @@ import javax.persistence.Id;
 @Table(name = "posts")
 public class PostDo {
 
-    @Id
-    @GeneratedValue(generator = "id")
-    @GenericGenerator(name = "id", strategy = "uuid2")
-    private String id;
-    private String content;
-    private boolean published;
-    private String tags;
-    private String title;
+	@Id
+	@GeneratedValue(generator = "id")
+	@GenericGenerator(name = "id", strategy = "uuid2")
+	private String id;
+	private String content;
+	private boolean published;
+	private String tags;
+	private String title;
 
+	public PostDo() {
+	}
 
+	public String getId() {
+		return this.id;
+	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public PostDo() {
-    }
+	public String getTitle() {
+		return this.title;
+	}
 
-    public String getId() {
-        return this.id;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public String getContent() {
+		return this.content;
+	}
 
-    public String getTitle() {
-        return this.title;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public boolean isPublished() {
+		return this.published;
+	}
 
-    public String getContent() {
-        return this.content;
-    }
+	public boolean getPublished() {
+		return this.published;
+	}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+	public void setPublished(boolean published) {
+		this.published = published;
+	}
 
-    public boolean isPublished() {
-        return this.published;
-    }
+	public String getTags() {
+		return this.tags;
+	}
 
-    public boolean getPublished() {
-        return this.published;
-    }
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
 
-    public void setPublished(boolean published) {
-        this.published = published;
-    }
-
-    public String getTags() {
-        return this.tags;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
-    @Override
-    public String toString() {
-        return "{" + " id='" + getId() + "'" + ", title='" + getTitle() + "'" + ", content='" + getContent() + "'"
-                + ", published='" + isPublished() + "'" + ", tags='" + getTags() + "'" + "}";
-    }
+	@Override
+	public String toString() {
+		return "{" + " id='" + getId() + "'" + ", title='" + getTitle() + "'" + ", content='" + getContent() + "'"
+				+ ", published='" + isPublished() + "'" + ", tags='" + getTags() + "'" + "}";
+	}
 
 }

@@ -6,52 +6,51 @@ import gespost.presentation.pojo.PostDto;
 
 public interface IPostService {
 
-    /**
-     * Permet de retouner la liste de tous les posts
-     * 
-     * @return allPosts
-     */
-    List<PostDto> getAllPost();
+	/**
+	 * Permet de retouner la liste de tous les posts
+	 * 
+	 * @return allPosts
+	 */
+	List<PostDto> getAllPost();
 
-    /**
-     * Permet de retourner la liste des posts à partir d'un titre
-     * 
-     * @param title
-     * @return listPostByTitle
-     */
-    List<PostDto> findAllPostByTitle(String title);
+	/**
+	 * Permet de retourner la liste des posts à partir d'un titre
+	 * 
+	 * @param title
+	 * @return listPostByTitle
+	 */
+	List<PostDto> findAllPostByTitle(String title);
 
-    /**
-     * Permet de chercher un post à partir de son id
-     * 
-     * @param id
-     * @return post
-     */
-    PostDto findPostById(String id);
+	/**
+	 * Permet de chercher un post à partir de son id
+	 * 
+	 * @param id
+	 * @return post
+	 */
+	PostDto findPostById(String id);
 
-    /**
-     * Permet de creer un nouveau Post
-     * 
-     * @param postDto
-     * @return post
-     */
-    String createPost(PostDto postDto);
+	/**
+	 * Permet de creer un nouveau Post
+	 * 
+	 * @param postDto
+	 * @return post
+	 */
+	String createPost(PostDto postDto);
 
-    /**
-     * Permet de mettre à jour une post à partir de son id
-     * 
-     * @param id
-     * @param postDto
-     * @return 
-     */
-    String updatePost(String id, PostDto postDto);
+	/**
+	 * Permet de mettre à jour une post à partir de son id
+	 * 
+	 * @param id
+	 * @param postDto
+	 * @return
+	 */
+	String updatePost(String id, PostDto postDto);
 
-    
-    /**
-     * Permet de supprimer un post
-     * 
-     * @param id
-     */
-    void deletePost(String id);
+	/**
+	 * Permet de supprimer un post
+	 * 
+	 * @param id
+	 */
+	void deletePost(String id);
 
 }
