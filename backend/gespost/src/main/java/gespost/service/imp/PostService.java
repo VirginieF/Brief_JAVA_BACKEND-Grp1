@@ -26,8 +26,8 @@ public class PostService implements IPostService {
 	 * @param postDo
 	 * @return postDto
 	 */
-	private PostDto mapToPostDto(final PostDo postDo) {
-		final PostDto postDto = new PostDto();
+	private PostDto mapToPostDto(PostDo postDo) {
+		PostDto postDto = new PostDto();
 		if (postDo == null) {
 			return null;
 		}
@@ -45,8 +45,8 @@ public class PostService implements IPostService {
 	 * @param postDto
 	 * @return postDo
 	 */
-	private PostDo mapToPostDo(final PostDto postDto) {
-		final PostDo postDo = new PostDo();
+	private PostDo mapToPostDo(PostDto postDto) {
+		PostDo postDo = new PostDo();
 		if (postDto == null) {
 			return null;
 		}

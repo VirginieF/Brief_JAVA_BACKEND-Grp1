@@ -46,6 +46,7 @@ public interface IPostService {
      */
     String updatePost(String id, PostDto postDto);
 
+    
     /**
      * Permet de supprimer un post
      * 

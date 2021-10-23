@@ -58,8 +58,8 @@ public class PostController {
 	}
 
 	@PostMapping({ "/posts" })
-	public String save(@RequestBody PostDto post) {
-		return this.postService.createPost(post);
+	public void save(@RequestBody PostDto post) {
+		this.postService.createPost(post);
 
 	}
 
@@ -70,13 +70,19 @@ public class PostController {
 	}
 
 	@PutMapping("/posts/{id}")
-	public String update(@PathVariable String id, @RequestBody PostDto postDto) {
+	public void update(@PathVariable String id, @RequestBody PostDto postDto) {
 		PostDto currentPostDto = postService.findPostById(id);
 		if (currentPostDto != null) {
-			return postService.updatePost(id, postDto);
+			postService.updatePost(id, postDto);
 		} else {
-			return postService.createPost(postDto);
+			postService.createPost(postDto);
 		}
+	}
+    @PutMapping("/posts/{id}/publish")
+	public void publish(@PathVariable String id, @RequestBody PostDto postDto) {
+		PostDto currentPostDto = postService.findPostById(id);
+        currentPostDto.setPublished(postDto.getPublished());
+        postService.updatePost(id, postDto);
 	}
 
 }
