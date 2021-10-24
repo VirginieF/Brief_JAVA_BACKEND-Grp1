@@ -109,6 +109,12 @@ public class PostService implements IPostService {
         return newPostDo.getId();
     }
 
+
+
+    
+    /**
+     * Permet de modifier un Post
+     */
     @Override
     public void updatePost(final String id,final PostDto postDto) {
            PostDo postDo = postDao.findById(id).get();
