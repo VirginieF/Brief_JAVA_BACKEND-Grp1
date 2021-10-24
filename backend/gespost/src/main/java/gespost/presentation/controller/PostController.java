@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import gespost.presentation.pojo.PostDto;
 import gespost.service.IPostService;
 
-
 /**
  * Classe ControllerRest
  * 
@@ -116,7 +115,7 @@ public class PostController {
 	}
 
 	/**
-	 * Permet de publier un publication
+	 * Permet de publier ou non une publication
 	 * 
 	 * @param id
 	 * @param postDto

@@ -26,6 +26,10 @@ public class PostService implements IPostService {
 	@Autowired
 	private IPostDao postDao;
 
+	public PostService(IPostDao postDao) {
+		this.postDao = postDao;
+	}
+
 	/**
 	 * map un postDo ---> postDto
 	 * 
@@ -99,8 +103,6 @@ public class PostService implements IPostService {
 		return mapToPostDto(postDo);
 	}
 
-	
-
 	@Override
 	public String createPost(final PostDto postDto) {
 
@@ -122,7 +124,6 @@ public class PostService implements IPostService {
 		return mapToPostDto(updatedPost).getId();
 
 	}
-	
 
 	@Override
 	public void deletePost(String id) {
