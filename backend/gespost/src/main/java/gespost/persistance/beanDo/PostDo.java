@@ -6,6 +6,12 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+/**
+ * Classe de l'objet  Model PostDo
+ * 
+ * @author Arwa, Mireille, Sabrine, Virginie
+ *
+ */
 @Entity
 @Table(name = "posts")
 public class PostDo {

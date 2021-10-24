@@ -4,6 +4,12 @@ import java.util.List;
 
 import gespost.presentation.pojo.PostDto;
 
+/**
+ * Interface IPostServices des méthodes métiers de la gestion des posts
+ * 
+ * @author Arwa, Mireille, Sabrine, Virginie
+ *
+ */
 public interface IPostService {
 
 	/**
@@ -17,7 +23,7 @@ public interface IPostService {
 	 * Permet de retourner la liste des posts à partir d'un titre
 	 * 
 	 * @param title
-	 * @return listPostByTitle
+	 * @return allPosts
 	 */
 	List<PostDto> findAllPostByTitle(String title);
 
@@ -25,7 +31,7 @@ public interface IPostService {
 	 * Permet de chercher un post à partir de son id
 	 * 
 	 * @param id
-	 * @return post
+	 * @return postDto
 	 */
 	PostDto findPostById(String id);
 
@@ -33,7 +39,7 @@ public interface IPostService {
 	 * Permet de creer un nouveau Post
 	 * 
 	 * @param postDto
-	 * @return post
+	 * @return id
 	 */
 	String createPost(PostDto postDto);
 
@@ -42,7 +48,7 @@ public interface IPostService {
 	 * 
 	 * @param id
 	 * @param postDto
-	 * @return
+	 * @return id
 	 */
 	String updatePost(String id, PostDto postDto);
 

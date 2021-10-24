@@ -1,5 +1,11 @@
 package gespost.presentation.pojo;
 
+/**
+ * Classe de l'Objet beanDo PostDo
+ * 
+ * @author Arwa, Mireille, Sabrine, Virginie
+ *
+ */
 public class PostDto {
 
     private String id;
@@ -8,9 +14,13 @@ public class PostDto {
     private String tags;
     private Boolean published;
 
-    public PostDto(String id2, String title2, String content2, boolean published2, String tags2) {
-    }
+    
     public PostDto() {
+    	//Empty Method
+    }
+    
+    public PostDto(String id2, String title2, String content2, boolean published2, String tags2) {
+    	//Empty Method
     }
    
     public String getId() {

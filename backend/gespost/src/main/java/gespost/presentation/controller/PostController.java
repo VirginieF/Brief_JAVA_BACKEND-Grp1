@@ -18,6 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import gespost.presentation.pojo.PostDto;
 import gespost.service.IPostService;
 
+
+/**
+ * Classe ControllerRest
+ * 
+ * @author Arwa, Mireille, Sabrine, Virginie
+ *
+ */
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
@@ -35,7 +42,7 @@ public class PostController {
 	 * 
 	 * Postman link : GET api/posts
 	 * 
-	 * @return liste
+	 * @return liste des posts
 	 */
 	@GetMapping({ "/posts" })
 	public List<PostDto> list(@RequestParam(required = false) String title) {
@@ -49,7 +56,7 @@ public class PostController {
 	 * Permet de retrouver un post par son id
 	 * 
 	 * @param id
-	 * @return post
+	 * @return postDto
 	 */
 	@GetMapping({ "/posts/{id}" })
 	public PostDto getById(@PathVariable String id) {
@@ -69,26 +76,34 @@ public class PostController {
 		return liste;
 	}
 
-    /**
-     * Permet de creer un nouveau Post
-     */
-
+	/**
+	 * Permet de creer un nouveau Post
+	 * 
+	 * @param post
+	 */
 	@PostMapping({ "/posts" })
 	public void save(@RequestBody PostDto post) {
 		this.postService.createPost(post);
 
 	}
 
-    /**
-     * Permet de supprimer un Post
-     */
-
+	/**
+	 * Permet de supprimer un Post
+	 * 
+	 * @param id
+	 */
 	@DeleteMapping({ "/posts/{id}" })
 	public void delete(@PathVariable(value = "id") String id) {
 		this.postService.deletePost(id);
 
 	}
 
+	/**
+	 * Permet de mettre à jour un Post
+	 * 
+	 * @param id
+	 * @param postDto
+	 */
 	@PutMapping("/posts/{id}")
 	public void update(@PathVariable String id, @RequestBody PostDto postDto) {
 		PostDto currentPostDto = postService.findPostById(id);
@@ -98,11 +113,14 @@ public class PostController {
 			postService.createPost(postDto);
 		}
 
-        /**
-     * Permet de publier un publication
-     */
 	}
 
+	/**
+	 * Permet de publier un publication
+	 * 
+	 * @param id
+	 * @param postDto
+	 */
 	@PutMapping("/posts/{id}/publish")
 	public void publish(@PathVariable String id, @RequestBody PostDto postDto) {
 		PostDto currentPostDto = postService.findPostById(id);

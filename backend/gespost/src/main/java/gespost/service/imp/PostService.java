@@ -13,6 +13,12 @@ import gespost.persistance.dao.IPostDao;
 import gespost.presentation.pojo.PostDto;
 import gespost.service.IPostService;
 
+/**
+ * Classe Service de l'objet Post implémantant l'interface Sercice IPostService
+ * 
+ * @author Arwa, Mireille, Sabrine, Virginie
+ *
+ */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public class PostService implements IPostService {
